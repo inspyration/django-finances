@@ -1,0 +1,118 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-10 15:38+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: transaction/admin.py:15
+msgid "month"
+msgstr "mois"
+
+#: transaction/admin.py:67 transaction/admin.py:162
+msgid "Category"
+msgstr "catégorie"
+
+#: transaction/admin.py:112 transaction/admin.py:141
+msgid "Technical information"
+msgstr "information technique"
+
+#: transaction/admin.py:136
+msgid "Settings"
+msgstr "configuration"
+
+#: transaction/apps.py:7 transaction/models.py:75
+msgid "transaction"
+msgstr "transaction"
+
+#: transaction/models.py:16
+msgid "source"
+msgstr "poste de dépense"
+
+#: transaction/models.py:26
+msgid "account"
+msgstr "compte"
+
+#: transaction/models.py:36
+msgid "date"
+msgstr "date"
+
+#: transaction/models.py:43
+msgid "name"
+msgstr "nom"
+
+#: transaction/models.py:51
+msgid "amount"
+msgstr "montant"
+
+#: transaction/models.py:76
+msgid "transactions"
+msgstr "transaction"
+
+#: transaction/models.py:91
+msgid "expense"
+msgstr "dépense"
+
+#: transaction/models.py:92
+msgid "expenses"
+msgstr "dépenses"
+
+#: transaction/models.py:98
+msgid "daily"
+msgstr "quotidien"
+
+#: transaction/models.py:99
+msgid "weekly"
+msgstr "hebdomadaire"
+
+#: transaction/models.py:100
+msgid "monthly"
+msgstr "mensuel"
+
+#: transaction/models.py:101
+msgid "yearly"
+msgstr "annuel"
+
+#: transaction/models.py:105
+msgid "frequency"
+msgstr "fréquence"
+
+#: transaction/models.py:114
+msgid "active"
+msgstr "actif"
+
+#: transaction/models.py:121
+msgid "foresight"
+msgstr "prévision"
+
+#: transaction/models.py:122
+msgid "foresights"
+msgstr "prévisions"
+
+#: transaction/templates/admin/xindex.html:19
+msgid "Recent actions"
+msgstr "actions récentes"
+
+#: transaction/templates/admin/xindex.html:20
+msgid "My actions"
+msgstr "mes actions"
+
+#: transaction/templates/admin/xindex.html:24
+msgid "None available"
+msgstr "aucun disponible"
+
+#: transaction/templates/admin/xindex.html:38
+msgid "Unknown content"
+msgstr "contenu inconnu"
