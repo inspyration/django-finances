@@ -9,6 +9,7 @@ from django.db.models import (
     BooleanField,
     PROTECT,
 )
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from polymorphic.models import PolymorphicModel
@@ -23,6 +24,11 @@ class Transaction(PolymorphicModel):
 
     This object if the main object of the project.
     """
+
+    @cached_property
+    def type(self):
+        """Work around to get quickly, efficiently and reliably the polymorphic type of this contact."""
+        return self.polymorphic_ctype.name
 
     source = ForeignKey(
         verbose_name=_("source"),
@@ -109,11 +115,11 @@ class Expense(Transaction):
         verbose_name_plural = _("expenses")
 
 
-class Foresight(Transaction):
+class DirectDebit(Transaction):
     """
-    ## Foresight model
+    ## Direct debit model
 
-    This model represent a transaction that is an anticipation of a planned and recurrent expense.
+    This model represent a transaction that is a recurrent expense.
     """
 
     FREQUENCY = (
@@ -135,10 +141,11 @@ class Foresight(Transaction):
     active = BooleanField(
         verbose_name=_("active"),
         db_index=True,
+        default=True,
     )
 
     class Meta(Transaction.Meta):  # pylint: disable=too-few-public-methods
-        """Foresight Meta class"""
+        """DirectDebit Meta class"""
 
-        verbose_name = _("foresight")
-        verbose_name_plural = _("foresights")
+        verbose_name = _("direct debit")
+        verbose_name_plural = _("direct debits")

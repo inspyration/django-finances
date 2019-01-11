@@ -17,12 +17,12 @@ class AccountAdmin(ModelAdmin):
     """
 
     model = Account
-    fields = ("bank", "name", "slug", "amount")
-    readonly_fields = ("amount",)
-    list_display = ("name",)
-    prepopulated_fields = {"slug": ("bank", "name",)}
-    search_fields = ("bank__name", "name")
+    fields = ("bank", "name", "slug", "cap")
+    readonly_fields = ("slug",)
+    list_display = ("bank", "name", "cap")
+    search_fields = ("bank", "bank__name", "name")
     autocomplete_fields = ("bank",)
+    list_display_links = ("name",)
 
     def get_prepopulated_fields(self, request, obj=None):
         """Do not pre-populate fields on a simple view page"""

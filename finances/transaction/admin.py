@@ -10,7 +10,7 @@ from django.db.models import Sum
 from django.utils.translation import ugettext_lazy as _
 from polymorphic.admin import PolymorphicChildModelAdmin, PolymorphicParentModelAdmin, PolymorphicChildModelFilter
 
-from transaction.models import Transaction, Expense, Foresight
+from transaction.models import Transaction, Expense, DirectDebit
 
 
 class TransactionMonthListFilter(SimpleListFilter):
@@ -81,13 +81,12 @@ class TransactionChildAdmin(PolymorphicChildModelAdmin):
     source_category.short_description = _("Category")
 
     base_model = Transaction
-    # fields = ("source", "account", "date", "name", "amount", "slug")
-    prepopulated_fields = {"slug": ("name",)}
+    readonly_fields = ("slug",)
     search_fields = ("source__name", "account__name", "date", "name")
     autocomplete_fields = ("source", "account")
     list_filter = ("source__category", TransactionMonthListFilter, "source", "account")
-    # list_display = ("polymorphic_ctype", "source", "account", "date", "name", "amount")
-    list_display = ("polymorphic_ctype", "source_category", "source", "account", "date", "name", "amount")
+    list_display = ("type", "source_category", "source", "account", "date", "name", "amount")
+    list_display_links = ("name",)
 
     def get_changelist(self, request, **kwargs):
         """Add the transaction specific change list that add the sum on the amount column"""
@@ -141,15 +140,15 @@ class ExpenseAdmin(TransactionChildAdmin):
     )
 
 
-@register(Foresight)
-class ForesightAdmin(TransactionChildAdmin):
+@register(DirectDebit)
+class DirectDebitAdmin(TransactionChildAdmin):
     """
-    ## Expense specific admin IHM
+    ## DirectDebit specific admin IHM
 
     This object represents a transaction that is an anticipation of a planned and recurrent expense.
     """
 
-    base_model = Foresight
+    base_model = DirectDebit
     show_in_index = True
     radio_fields = {"frequency": HORIZONTAL}
     fieldsets = (
@@ -194,6 +193,27 @@ class ContactParentAdmin(PolymorphicParentModelAdmin):
     source_category.short_description = _("Category")
 
     base_model = Transaction
-    child_models = (Expense, Foresight)
+    child_models = (Expense, DirectDebit)
     list_filter = (PolymorphicChildModelFilter, "source__category", TransactionMonthListFilter, "source", "account")
     list_display = ("polymorphic_ctype", "source_category", "source", "account", "date", "name", "amount")
+    list_display_links = ("name",)
+
+    def has_module_permission(self, request):
+        """Can be accessed from home page"""
+        return True
+
+    def has_add_permission(self, request):
+        """Can add an object"""
+        return True
+
+    def has_delete_permission(self, request, obj=None):
+        """Can delete an object"""
+        return True
+
+    def has_change_permission(self, request, obj=None):
+        """Can update an object"""
+        return True
+
+    def has_view_permission(self, request, obj=None):
+        """Can view an object"""
+        return True

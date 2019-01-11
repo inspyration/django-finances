@@ -44,8 +44,9 @@ class Account(Model):
         db_index=True,
     )
 
-    amount = PositiveSmallIntegerField(
-        verbose_name=_("Amount"),
+    cap = PositiveSmallIntegerField(
+        verbose_name=_("spending cap"),
+        help_text=_("monthly spending cap"),
         blank=False,
         null=False,
         default=0,

@@ -17,11 +17,12 @@ class SourceAdmin(ModelAdmin):
     """
 
     model = Source
-    fields = ("category", "name", "slug")
-    list_display = ("name",)
-    prepopulated_fields = {"slug": ("name",)}
+    fields = ("category", "name", "slug", "cap")
+    readonly_fields = ("slug",)
+    list_display = ("category", "name", "cap")
     search_fields = ("category__name", "name")
     autocomplete_fields = ("category",)
+    list_display_links = ("name",)
 
     def get_prepopulated_fields(self, request, obj=None):
         """Do not pre-populate fields on a simple view page"""

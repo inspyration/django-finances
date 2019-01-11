@@ -6,6 +6,7 @@ from django.db.models import (
     ForeignKey,
     SlugField,
     PROTECT,
+    PositiveSmallIntegerField,
 )
 from django.utils.translation import ugettext_lazy as _
 
@@ -14,7 +15,7 @@ from category.models import Category
 
 class Source(Model):
     """
-    ## Financial transaction
+    ## Source of spending
 
     This object represent an source of transactions (this is a revealing level of aggregation).
     """
@@ -42,6 +43,14 @@ class Source(Model):
         max_length=32,
         editable=True,
         db_index=True,
+    )
+
+    cap = PositiveSmallIntegerField(
+        verbose_name=_("spending cap"),
+        help_text=_("monthly spending cap"),
+        blank=False,
+        null=False,
+        default=0,
     )
 
     def __str__(self):

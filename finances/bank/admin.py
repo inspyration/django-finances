@@ -20,8 +20,8 @@ class BankAdmin(ModelAdmin):
 
     model = Bank
     fields = ("name", "slug")
+    readonly_fields = ("slug",)
     list_display = ("name",)
-    prepopulated_fields = {"slug": ("name",)}
     search_fields = ("name",)
 
     def has_module_permission(self, request):

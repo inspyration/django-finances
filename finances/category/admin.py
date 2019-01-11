@@ -19,8 +19,8 @@ class CategoryAdmin(ModelAdmin):
 
     model = Category
     fields = ("name", "slug")
+    readonly_fields = ("slug",)
     list_display = ("name", "source_names")
-    prepopulated_fields = {"slug": ("name",)}
     search_fields = ("name",)
 
     @staticmethod
