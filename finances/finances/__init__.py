@@ -1,1 +1,1 @@
-"""# Main pakage"""
+"""# Main package"""
